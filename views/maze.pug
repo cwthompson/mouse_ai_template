@@ -1,0 +1,8 @@
+each row in maze
+    div.row
+
+    each room in row
+        div.room.not-visited(id=room.styleId class=room.styleClass)
+
+            if (showCoordinates)
+                span #{room.x}:#{room.y} - #{room.numberOfDoors}

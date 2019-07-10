@@ -1,0 +1,98 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial;
+}
+
+button {
+    /*float:left;*/
+    margin-right: 10px;
+    color: black;
+    display: inline-block;
+}
+
+/*.map .room.not-visited {*/
+    /*border-color: black;*/
+    /*background-color: black !important;*/
+/*}*/
+
+h1, span {
+    color: white;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.room {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display:inline-block;
+    width: 60px;
+    height: 60px;
+    background-color:darkred;
+    /*margin: -1px -1px -1px -1px;*/
+    margin: -2px 1px -2px -1px;
+    border: 1px solid white;
+}
+
+.map {
+    /*border: 1px solid white;*/
+    /*padding:2px 1px;*/
+    margin-top: 5px;
+    float: left;
+    margin-right: 10px;
+}
+
+.no-wall-top {
+    /*border-top: 1px solid darkred !important;*/
+    border-top: none;
+}
+
+.no-wall-right {
+    /*border-right: 1px solid darkred !important;*/
+    border-right: none;
+}
+
+.no-wall-bottom {
+    /*border-bottom: 1px solid darkred !important;*/
+    border-bottom: none;
+}
+
+.no-wall-left {
+    /*border-left: 1px solid darkred !important;*/
+    border-left: none;
+}
+
+.map .finish {
+    background-color: yellow !important;
+    color: black;
+}
+
+.map .room.finish.mouse,
+.map .room.mouse {
+    background-color: deeppink !important;
+}
+
+.map .room.finish.mouse.foundDeadEnd,
+.map .room.mouse.foundDeadEnd {
+    background-color: blue !important;
+}
+
+.log {
+    display: inline-block;
+    float:left;
+    background-color: darkred;
+    max-height:400px;
+    overflow:auto;
+    padding:5px 10px 5px 5px;
+    list-style: none;
+    color: white;
+}
+
+/*.not-visited-finished {*/
+    /*background-color: darkblue;*/
+/*}*/
+
+.map .room.dead-end {
+    background-color: darkslategray;
+}

@@ -1,0 +1,27 @@
+doctype html
+html
+    head
+        title #{title}
+        link(rel='stylesheet', href='/css/style.css')
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        script(src='https://cdn.socket.io/socket.io-1.4.5.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js')
+        script(src='scripts.js')
+    body
+        main
+            block content
+                div.map
+                    include maze.pug
+
+                div.pannel
+                    button#start(type='button' onclick='start()') Start Mouse
+                    button#stop(type='button' onclick='stop()' disabled='true') Stop Mouse
+                    select#hashSelect
+                        option(value="5cf2cb714fce3beaca0fe07371360a05") 1 x 5 single corridor
+                        option(value="ebce5b6e47b75391ac895b98090bfbf7") 2 x 10 multiple corridors
+                        option(value="11c81c9a2682f926c17fb3d048aedce6") 3 x 5 multiple open rooms
+                        option(value="7b827e33a12bc21bed55aba43421e6a1") 6 x 6
+                    button#load(type='button' onclick='load()') Load Maze
+                    div#something
+                    ul.log
+                        li Maze loaded
