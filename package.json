@@ -4,9 +4,9 @@
   "description": "maze runner tech test",
   "main": "app.js",
   "scripts": {
-    "start": "npx pm2 start app.js --name 'mazeGen' --watch",
-    "stop": "npx pm2 stop mazeGen --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx pm2 start app.js --name 'mouseAITemplate' --watch",
+    "stop": "npx pm2 stop mouseAITemplate --watch",
+    "logs": "pm2 logs mouseAITemplate"
   },
   "dependencies": {
     "crypto-js": "^3.1.9-1",

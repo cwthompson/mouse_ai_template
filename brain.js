@@ -1,39 +1,48 @@
 var brain = {
     socket: {},
     mouse: {},
-    map: {},
+    maze: {},
     timer: 200,
     move: {},
     start : function() {
         //
-        // var socket = brain.socket;
+        var socket = brain.socket;
         var mouse = brain.mouse;
-        var map = brain.map;
-        var finish = map.getFinishZone();
+        var maze = brain.maze;
 
         this.move = setInterval(function() {
 
+            var finish = maze.getFinishZone();
+
             // this represents each step the mouse takes
 
-            var currentRoom = mouse.getLocation();
+            var currentLocation = mouse.getLocation();
 
-            if (finish.x == currentRoom.x &&
-                finish.y == currentRoom.y) {
+            if (finish.x == currentLocation.x &&
+                finish.y == currentLocation.y) {
 
-                // brain.socket.emit('mazeFinished', {
+                // //  update the number of the mouse and reset details such as steps ect.
+                //
+                //mouse.resetMouse();
+                //
+                // // socket used update the client side display. e.g display a message saying the mouse has finished
+                //
+                // socket.emit('mazeFinished', {
                 //     name: mouse.getName(),
-                //     steps: steps
+                //     steps: mouse.getSteps()
                 // });
-                //
-                //
+
+                brain.stop();
 
             } else {
 
-                // brain.socket.emit('mouseMoved', {
-                //     name: name,
+                // // socket used to update the client side display. e.g visually make the mouse move
+                //
+                // socket.emit('mouseMoved', {
+                //     name: mouse.getName(),
                 //     location: mouse.getLocation(),
-                //     steps: steps,
-                //     resetMouse: resetMouse
+                //     steps: mouse.getSteps(),
+                //     resetMouse: false // used to determin what message to display - not to be confused with mouse.reset
                 // });
             }
 
@@ -44,12 +53,11 @@ var brain = {
     }
 }
 
-module.exports.getBrain = function (socket, mouse, map) {
+module.exports.getBrain = function (socket, mouse, maze) {
 
-    brain.map = map;
+    brain.maze = maze;
     brain.mouse = mouse;
     brain.socket = socket;
-    // brain.timer = brain.maxTimer;
 
     return brain;
 }

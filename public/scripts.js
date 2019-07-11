@@ -1,6 +1,4 @@
 var socket = io();
-//
-// socket.emit('create', 'room1');
 
 var start = function(){
 
@@ -46,12 +44,10 @@ socket.on('mazeFinished', function(data){
     $('.not-visited')
         .addClass('not-visited-finished');
 
-    data.deadEnds.forEach((function(deadEnd) {
-            $('#roomX'+deadEnd.x+'Y'+deadEnd.y)
-                .addClass('dead-end');
-        })
-    );
     $('.log li:first-child').before('<li>'+data.name+' found cheese in '+data.steps+' steps</li>');
+
+    $('#stop').attr('disabled', true);
+    $('#start').attr('disabled', false);
 });
 
 socket.on('mouseMoved',function(data){
@@ -65,6 +61,7 @@ socket.on('mouseMoved',function(data){
         // record what the viewers mouse is here
         $('#something').html(data.name+' moved to room '+data.location.x+ " - "+data.location.y+ " and has taken "+data.steps+" steps");
     }
+    $('.room').removeClass('mouse');
 
     $('#roomX'+data.location.x+'Y'+data.location.y).addClass('mouse') // update to mouse
 });

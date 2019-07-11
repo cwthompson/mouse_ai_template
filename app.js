@@ -15,25 +15,24 @@ app.get('/', (req, res) => {
 
     res.render('index', {
         showCoordinates: false, // set to true to display room coordinates
-        mazeHash: map.getMazeHash(),
-        maze: map.getRooms(),
-        mouse: mouse
+        mazeHash: maze.getMazeHash(),
+        maze: maze.getRooms(),
+        mouse: mouse,
+        showCoordinates: false
     });
 });
 
 app.get('/maze/:id', (req, res) => {
 
-    map.load = true;
-    map.hash = req.params.id;
-    map.init();
+    maze.load = true;
+    maze.hash = req.params.id;
+    maze.init();
 
     mouse.number = 0;
-    mouse.updateLocation(map.getStartZone());
+    mouse.updateLocation(maze.getStartZone());
 
     res.render('maze', {
-        // mazeHash: map.getMazeHash(),
-        // maze: map.getArea(),
-        maze: map.getRooms(),
+        maze: maze.getRooms(),
         mouse: mouse,
         showCoordinates: false
     });
@@ -42,10 +41,10 @@ app.get('/maze/:id', (req, res) => {
 // - setup -----------------------------------
 
 var brain;
-var map = mazeArea.getMaze();
+var maze = mazeArea.getMaze();
 var mouse = m.getMouse();
 
-mouse.updateLocation(map.getStartZone());
+mouse.updateLocation(maze.getStartZone());
 
 // - socket -----------------------------------
 
@@ -53,15 +52,13 @@ var io = require('socket.io')(serv,{});
 
 io.sockets.on('connection', function(socket){
 
-    brain = b.getBrain(socket, mouse, map);
-
-    console.log('socket connection');
+    brain = b.getBrain(socket, mouse, maze);
 
     socket.on('startMouse',function(data){
 
         mouse.steps = 0;
         mouse.resetMouse();
-        mouse.updateLocation(map.getStartZone());
+        mouse.updateLocation(maze.getStartZone());
         brain.start();
     });
 
@@ -72,9 +69,9 @@ io.sockets.on('connection', function(socket){
 
     socket.on('loadMaze',function(data){
 
-        map.load = true;
-        map.hash = data.hash;
-        map.loadArea();
+        maze.load = true;
+        maze.hash = data.hash;
+        maze.loadArea();
         brain.stop();
     });
 });

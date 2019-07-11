@@ -1,6 +1,6 @@
 var fs = require('fs');
 var generator = require('generate-maze');
-const mapRoom = require('./room.js');
+const mazeRoom = require('./room.js');
 var crypto = require('crypto');
 
 var maze = {
@@ -17,8 +17,8 @@ var maze = {
     },
     xMultiplier: 2, // max 10
     yMultiplier: 4, // max 10
-    area : [],
-    rooms: [],
+    rooms: [], // an array of all the rooms in the maze follows the parrts rooms[x][y]
+    area : [], // used for loading form files
     init: function () {
 
         if (this.load) {
@@ -28,8 +28,15 @@ var maze = {
         }
         this.translateMap();
 
-        console.log(this.finishZone.x + " "+this.finishZone.x+' is finish');
         return this;
+    },
+    getCurrentRoom: function(currentRoom) { // returns the room the mouse is currently in
+        // returns the room the mouse is currently in
+        return this.rooms[currentRoom.y][currentRoom.x];
+    },
+    getRooms: function () {
+        // returns all the
+        return this.rooms;
     },
     getStartZone: function () {
         return this.startZone;
@@ -37,13 +44,8 @@ var maze = {
     getFinishZone: function () {
         return this.finishZone;
     },
-    getArea: function () {
-        return this.area;
-    },
+    // - Below are functions used for loading a maze from a file. --------------------------------------------------------
     generateArea: function () {
-
-        var randNum = Math.floor(Math.random() * this.xMultiplier) + 1;
-        // update area details here later
 
         // update the generator vars at some point
         this.area = generator(this.xMultiplier, this.yMultiplier);
@@ -51,12 +53,12 @@ var maze = {
     },
     generateHash: function () {
 
-        this.hash = crypto.createHash('md5').update(JSON.stringify(this.getArea())).digest("hex");
+        this.hash = crypto.createHash('md5').update(JSON.stringify(this.area)).digest("hex");
         console.log('hash generated for map: '+this.hash);
         this.generateFilename();
     },
     generateFilename: function () {
-        this.file = "docs/mazes/maze_"+this.hash+".txt";
+        this.file = "docs/mazes/maze_"+this.hash+".json";
         console.log(this.file);
     },
     loadArea: function() {
@@ -69,10 +71,9 @@ var maze = {
             this.generateArea();
         }
     },
-    getRooms: function () {
-        return this.rooms;
-    },
     translateMap: function() {
+
+        // this is used for loading the mazes/map from the json files
 
         var rooms = [];
         var rowsCount = 0;
@@ -106,7 +107,7 @@ var maze = {
                         y: room.y
                     }
                 }
-                var room = mapRoom.getRoom(room);
+                var room = mazeRoom.getRoom(room);
 
                 row.push(room);
                 //add to row
@@ -116,9 +117,6 @@ var maze = {
         });
 
         this.rooms = rooms;
-    },
-    getCurrentRoom: function(currentRoom) {
-        return this.rooms[currentRoom.y][currentRoom.x];
     },
     getMazeHash: function() {
         return this.hash;

@@ -1,12 +1,12 @@
-function Room(mapArea) {
+function Room(mazeArea) {
 
     this.numberOfDoors = 0;
-    this.doors = [];
-    this.x = mapArea.x;
-    this.y = mapArea.y;
+    this.doors = []; // doors refer to the location to adjacent rooms
+    this.x = mazeArea.x;
+    this.y = mazeArea.y;
     this.isStart = false;
     this.isFinish = false;
-    this.setRoomDetails(mapArea)
+    this.setRoomDetails(mazeArea)
 }
 
 Room.prototype.setRoomDetails = function (room) {
@@ -50,7 +50,6 @@ Room.prototype.getDoors = function () {
     return this.doors;
 }
 
-module.exports.getRoom = function (mapRoom) {
-    // @todo make a room mapper!
-    return new Room(mapRoom);
+module.exports.getRoom = function (mazeRoom) {
+    return new Room(mazeRoom);
 };

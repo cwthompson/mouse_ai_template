@@ -1,19 +1,36 @@
 # mouse-ai
 
-personal project aimed at testing simple ai and making something my 5yr will enjoy
+A tech test based off a personal project aimed at creating a simple ai and making something my 5yr will enjoy
+-
+
+the aim is to create an AI that will help the mouse navigate the maze and find the cheese at the end. The smarter the mouse the better.
+
+- the mouse can only move one room at a time and only to an adjacent room (no teleportation)
+- a mouse shouldn't instantly know the correct path and instead should learn the best route through trial and error.
+- a mouse can inherit knowledge of the maze from previous runs.
 
 the project contains a mouse, maze, room and brain.
 
-- maze a collection of rooms that has been build on preset json files
+- `maze` a collection of rooms that has been build on preset json files
 
     The maze understands where the start and finish (cheese) is in the maze
-   , currently the start is set as the top left cornor and the finish is set as the bottom right
+   , currently the start is set as the top left corner and the finish is set as the bottom right
    
-- rooms contain details about an individual room in the maze,. This includes thier coordinates, if they are the start or finish of the maze and the number of doors.
+   the plugin used to generate the maze starts the top left room as x: 0 y: 0 and increments out from there (the room to the right being x: 0 y:1 and the one below being x:0 y:1)
+   
+- `rooms` contain details about an individual room in the maze,. This includes their coordinates, if they are the start or finish of the maze and the number of doors.
+    
+    each room element is given an id based on its coordinates e.g. `roomX0Y0`
+    
+    room.doors refer to adjacent rooms
 
-- mouse is the movable "player" the aim is to get the mouse to find a room in the maze that contains the cheese
+- `mouse` is the movable "player" the aim is to get the mouse to find a room in the maze that contains the cheese
 
-- brain decides what action should be taken next. example interactions to the front end have been left in as comments
+- `brain` decides what action should be taken next. brain also emits data via websocket the the client side to update anydisplays e.g. update the visual location of the mouse.
+
+    websockets have been set up in order to allow the front end communicate with any scripts running in the back end.
 
 
-websockets have been set up in order to allow the front end comunicate with any scripts running in the back end.
+the app is set up the run on `http://localhost:7000/` after running `npm start` console logs can be viewed by running `npm run logs`
+
+the main areas to focus on will be in `brain.start` and `mouse.move()`. `brain.start()` contains a loop that represents each time the mouse will move.
