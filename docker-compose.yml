@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  web:
+    container_name: mouse-ai-template
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+    command: npm run dev
+    ports:
+      - 3000:3000

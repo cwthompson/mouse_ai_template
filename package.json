@@ -4,6 +4,7 @@
   "description": "maze runner tech test",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon -L app.js",
     "start": "npx pm2 start app.js --name 'mouseAITemplate' --watch",
     "stop": "npx pm2 stop mouseAITemplate --watch",
     "logs": "pm2 logs mouseAITemplate"
@@ -13,6 +14,7 @@
     "express": "^4.16.3",
     "fs": "0.0.1-security",
     "generate-maze": "^0.2.0",
+    "nodemon": "^1.19.1",
     "npx": "^10.2.0",
     "pug": "^2.0.3",
     "socket.io": "^2.2.0"

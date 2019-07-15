@@ -9,7 +9,7 @@ const b = require('./brain.js');
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
 
-serv.listen(7000);
+serv.listen(3000);
 
 app.get('/', (req, res) => {
 
