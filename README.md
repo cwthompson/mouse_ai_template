@@ -32,6 +32,7 @@ the project contains a mouse, maze, room and brain.
     websockets have been set up in order to allow the front end communicate with any scripts running in the back end.
 
 
-the app is set up with docker and runs on `http://localhost:3000/` after running `docker-compose build` and `docker-compose up`
+the app is set up with docker and runs on `http://localhost:3000/` after running `docker-compose build` and `docker-compose up` 
+if nodemon kicks up a fuss you may need to run `npm install -g nodemon`
 
 the main areas to focus on will be in `brain.start` and `mouse.move()`. `brain.start()` contains a loop that represents each time the mouse will move.

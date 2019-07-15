@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "nodemon -L app.js",
     "start": "npx pm2 start app.js --name 'mouseAITemplate' --watch",
-    "stop": "npx pm2 stop mouseAITemplate --watch",
-    "logs": "pm2 logs mouseAITemplate"
+    "stop": "npx pm2 stop mouseAITemplate --watch"
   },
   "dependencies": {
     "crypto-js": "^3.1.9-1",
