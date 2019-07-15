@@ -14,12 +14,12 @@
     "express": "^4.16.3",
     "fs": "0.0.1-security",
     "generate-maze": "^0.2.0",
-    "nodemon": "^1.19.1",
     "npx": "^10.2.0",
     "pug": "^2.0.3",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
+    "nodemon": "^1.19.1",
     "pm2": "^2.10.3"
   },
   "author": "Chris Thompson",
