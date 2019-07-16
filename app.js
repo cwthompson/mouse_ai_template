@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 const serv = require('http').Server(app);
 
-const mazeArea = require('./maze.js');
-const m = require('./mouse.js');
-const b = require('./brain.js');
+const mazeArea = require('./src/maze.js');
+const m = require('./src/mouse.js');
+const b = require('./src/brain.js');
 
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
