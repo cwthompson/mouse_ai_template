@@ -14,7 +14,7 @@
     "fs": "0.0.1-security",
     "generate-maze": "^0.2.0",
     "npx": "^10.2.0",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
