@@ -15,7 +15,7 @@
     "generate-maze": "^0.2.0",
     "npx": "^10.2.0",
     "pug": "^2.0.3",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.5.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1",
